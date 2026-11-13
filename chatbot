@@ -1,0 +1,76 @@
+import random
+from datetime import datetime
+
+
+# Function to generate chatbot responses
+def chatbot_response(user_input):
+
+    message = user_input.lower().strip()
+
+    # Greeting responses
+    if any(word in message for word in ["hello", "hi", "hey"]):
+        return random.choice([
+            "Hello! How can I help you?",
+            "Hi! Nice to meet you.",
+            "Hey! What would you like to know?"
+        ])
+
+    # Chatbot name
+    elif "your name" in message:
+        return "I am Python Chatbot!"
+
+    # Current time
+    elif "time" in message:
+        current_time = datetime.now().strftime("%I:%M %p")
+        return "Current time: " + current_time
+
+    # Current date
+    elif "date" in message:
+        current_date = datetime.now().strftime("%d-%m-%Y")
+        return "Today's date: " + current_date
+
+    # How are you
+    elif "how are you" in message:
+        return "I'm doing well! How can I help you?"
+
+    # Help option
+    elif "help" in message:
+        return (
+            "You can ask me about my name, date, or time. "
+            "You can also say hello!"
+        )
+
+    # Thank you response
+    elif "thank you" in message or "thanks" in message:
+        return "You're welcome!"
+
+    # Goodbye response
+    elif message in ["bye", "exit", "quit"]:
+        return "Goodbye! Have a great day!"
+
+    # Unknown message
+    else:
+        return "Sorry, I don't understand that yet. Try typing 'help'."
+
+
+# Main program
+print("================================")
+print("       PYTHON CHATBOT")
+print("================================")
+print("Hello! Welcome to my chatbot.")
+print("Type 'help' to see available options.")
+print("Type 'bye' to exit.")
+print()
+
+# Chat loop
+while True:
+
+    user = input("You: ")
+
+    response = chatbot_response(user)
+
+    print("Bot:", response)
+
+    # Exit condition
+    if user.lower().strip() in ["bye", "exit", "quit"]:
+        break
